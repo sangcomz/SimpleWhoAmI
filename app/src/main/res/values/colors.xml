@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="BasicTextColor">#66655a</color> //textBasic 색
+    <color name="lineColor">#fbc02d</color>
+    <color name="ProfilelineColor">#d5d5d7</color>
+
+
+</resources>
