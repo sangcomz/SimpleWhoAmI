@@ -1,5 +1,6 @@
 <!--디자인에 관한 링크 http://googledevkr.blogspot.kr/2014/10/appcompat-v21-material-design-for-pre.html -->
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
