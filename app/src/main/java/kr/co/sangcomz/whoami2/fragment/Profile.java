@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import kr.co.sangcomz.whoami2.R;
 
@@ -16,6 +17,8 @@ import kr.co.sangcomz.whoami2.R;
 public class Profile extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
+
+
     public Profile() {
         // Required empty public constructor
     }
@@ -24,8 +27,10 @@ public class Profile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+
+        return rootView;
     }
 
 

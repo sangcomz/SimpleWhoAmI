@@ -1,6 +1,7 @@
 package kr.co.sangcomz.whoami2;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -27,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
+    AppBarLayout appBarLayout;
 
     FloatingActionButton mFab;
 
     MainFragmentAdapter mainFragmentAdapter; //adapter 선언
+    int currentPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);         //툴바 xml 아이디 연걸
         viewPager = (ViewPager) findViewById(R.id.viewpager);   //viewpager xml 아이디 연걸
         tabLayout = (TabLayout) findViewById(R.id.tabs);        //tabLayout xml 아이디 연걸
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
 
-        mFab = (FloatingActionButton)findViewById(R.id.fab);
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setVisibility(View.INVISIBLE);
 
         mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager()); //adapter 객체 생성
@@ -56,15 +60,50 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+//                Path path = mIsOut ? mPathIn : mPathOut;
+                if (currentPosition == 1) {
+                    if (i < 0) {
+                        animFab(0);
+//                    startAnimation(mFab, AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR, 500, mPathOut);
+                    } else {
+                        animFab(1);
+//                    startAnimation(mFab, AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR, 500, mPathIn);
+                    }
+                }
+
+            }
+        });
+
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mFab.setVisibility(View.VISIBLE);
-                tab.getPosition();
-                if (tab.getPosition() == 1)
-                    animFab(1);
-                else
-                    animFab(0);
+                int position = tab.getPosition();
+                switch (position) {
+                    case 0:
+                        animFab(0);
+                        currentPosition = 0;
+                        viewPager.setCurrentItem(position);
+                        break;
+                    case 1:
+                        animFab(1);
+                        currentPosition = 1;
+                        viewPager.setCurrentItem(position);
+                        break;
+                    case 2:
+                        animFab(0);
+                        currentPosition = 2;
+                        viewPager.setCurrentItem(position);
+                        break;
+                    case 3:
+                        animFab(0);
+                        currentPosition = 3;
+                        viewPager.setCurrentItem(position);
+                        break;
+                }
             }
 
             @Override
@@ -83,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * viewPager에 adapter를 설정해준다.
+     *
      * @param viewPager
      * @param mainFragmentAdapter
      */
@@ -124,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void animFab(float scale){
+    private void animFab(float scale) {
         ViewCompat.animate(mFab)
 //                .translationYBy(deltaY)
 //                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR)

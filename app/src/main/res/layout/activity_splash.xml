@@ -9,10 +9,13 @@
     <!--TextView 속성 http://forenty.tistory.com/37-->
 
     <TextView
+        android:textSize="60dp"
+        android:textColor="#ffffff"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/hello_world" />
+        android:text="Who\nAm\nI" />
 
 
 </RelativeLayout>
