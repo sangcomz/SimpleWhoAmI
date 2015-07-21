@@ -1,13 +1,16 @@
 package kr.co.sangcomz.whoami2;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ import kr.co.sangcomz.whoami2.fragment.Album;
 import kr.co.sangcomz.whoami2.fragment.Free;
 import kr.co.sangcomz.whoami2.fragment.Hobby;
 import kr.co.sangcomz.whoami2.fragment.Profile;
+import kr.co.sangcomz.whoami2.util.AnimUtils;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
+
+    FloatingActionButton mFab;
 
     MainFragmentAdapter mainFragmentAdapter; //adapter 선언
 
@@ -35,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager);   //viewpager xml 아이디 연걸
         tabLayout = (TabLayout) findViewById(R.id.tabs);        //tabLayout xml 아이디 연걸
 
+        mFab = (FloatingActionButton)findViewById(R.id.fab);
+        mFab.setVisibility(View.INVISIBLE);
+
         mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager()); //adapter 객체 생성
 
         setSupportActionBar(toolbar);   //AppCompatActivity actionbar를 설정
@@ -46,6 +55,28 @@ public class MainActivity extends AppCompatActivity {
         setUpViewPager(viewPager, mainFragmentAdapter); //viewPager에  adapter를 달아준다.
 
         tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mFab.setVisibility(View.VISIBLE);
+                tab.getPosition();
+                if (tab.getPosition() == 1)
+                    animFab(1);
+                else
+                    animFab(0);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
     }
@@ -91,5 +122,18 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitles.get(position);
         }
+    }
+
+    private void animFab(float scale){
+        ViewCompat.animate(mFab)
+//                .translationYBy(deltaY)
+//                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR)
+                .setInterpolator(AnimUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR)
+//                .setInterpolator(AnimUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)
+                .scaleX(scale)
+                .scaleY(scale)
+                .setDuration(250)
+                .withLayer()
+                .start();
     }
 }
