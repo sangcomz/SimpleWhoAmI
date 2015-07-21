@@ -15,7 +15,6 @@
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:scaleType="centerCrop"
             android:src="@mipmap/pic_profile" />
         <!--res values에 colors와 dimens를 이용해서 글자 크기를 지정해준다.-->

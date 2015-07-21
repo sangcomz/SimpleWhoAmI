@@ -23,6 +23,7 @@ public class SplashActivity extends ActionBarActivity {
             public void run() {
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(i);
+                finish();
             }
         };
         mHandler.postDelayed(mRunnable, 2000);
