@@ -63,26 +63,7 @@ public class Hobby extends Fragment {
         hobbys.add("야구");
         hobbys.add("농구");
         hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
+
 
 
         listView.setAdapter(new HobbyAdapter(getActivity(), hobbys));
