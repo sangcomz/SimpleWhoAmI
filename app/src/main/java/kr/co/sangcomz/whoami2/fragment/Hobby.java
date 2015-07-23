@@ -138,14 +138,6 @@ public class Hobby extends Fragment {
         }
     }
 
-    private void DialogHobby(Context context){
-        final Dialog dialog = new Dialog(context, android.R.style.Theme_Translucent);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_add_hobby);
-
-        dialog.show();
-
-    }
 
 
 }

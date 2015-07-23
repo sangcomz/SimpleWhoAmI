@@ -1,5 +1,6 @@
 package kr.co.sangcomz.whoami2;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ import kr.co.sangcomz.whoami2.fragment.Free;
 import kr.co.sangcomz.whoami2.fragment.Hobby;
 import kr.co.sangcomz.whoami2.fragment.Profile;
 import kr.co.sangcomz.whoami2.util.AnimUtils;
+import kr.co.sangcomz.whoami2.util.Dialogs;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Dialogs().DialogHobby(MainActivity.this);
 
             }
         });

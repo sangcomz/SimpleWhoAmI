@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_area"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:orientation="vertical">
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="#ffffff"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="15dp">-->
 
     <TextView
+        android:paddingTop="15dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
         android:id="@+id/txt_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:text="취미 추가"
         android:textColor="#000"
-        android:textSize="22dp" />
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/et_hobby"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp" />
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,25 +44,26 @@
         <TextView
             android:id="@+id/btn_add"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:text="추가"
             android:textColor="#0f8df2"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
             android:layout_toLeftOf="@id/btn_add"
             android:gravity="center"
             android:minWidth="64dp"
             android:text="취소"
             android:textColor="#0f8df2"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
     </RelativeLayout>
 
 
