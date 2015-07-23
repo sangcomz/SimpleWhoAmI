@@ -1,12 +1,14 @@
 package kr.co.sangcomz.whoami2.fragment;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -134,6 +136,15 @@ public class Hobby extends Fragment {
             private TextView txtHobby;
 
         }
+    }
+
+    private void DialogHobby(Context context){
+        final Dialog dialog = new Dialog(context, android.R.style.Theme_Translucent);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_add_hobby);
+
+        dialog.show();
+
     }
 
 
