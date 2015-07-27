@@ -38,7 +38,7 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <!--추가-->
+    <!--추가 https://developer.android.com/reference/android/support/design/widget/FloatingActionButton.html-->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

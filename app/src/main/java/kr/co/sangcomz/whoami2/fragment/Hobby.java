@@ -24,9 +24,9 @@ public class Hobby extends Fragment {
 
     ListView listView;
 
+    public static HobbyAdapter hobbyAdapter; //어댑터 선언
 
-    public static HobbyAdapter hobbyAdapter;
-
+    //생성자
     public Hobby() {
         // Required empty public constructor
     }
@@ -35,13 +35,12 @@ public class Hobby extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment inflate 설명 :::: http://aroundck.tistory.com/39
         View rootView = inflater.inflate(R.layout.fragment_hobby, container, false);
 
         listView = (ListView)rootView.findViewById(R.id.lv);
 
 
-        MainActivity.hobbys = new ArrayList<String>();
         hobbyAdapter = new HobbyAdapter(getActivity(), MainActivity.hobbys);
 
         listView.setAdapter(hobbyAdapter);
@@ -49,6 +48,7 @@ public class Hobby extends Fragment {
         return rootView;
     }
 
+    //어댑터뷰 보면 좋을것같은 자료 http://www.slideshare.net/yjaeseok/20140808-android-study12adapterview
     public class HobbyAdapter extends BaseAdapter{
         ArrayList<String> hobbys;
         ViewHolder holder;

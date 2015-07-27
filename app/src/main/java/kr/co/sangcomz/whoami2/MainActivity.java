@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        hobbys = new ArrayList<String>();
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);             //툴바 xml 아이디 연걸
         viewPager = (ViewPager) findViewById(R.id.viewpager);       //viewpager xml 아이디 연걸
         tabLayout = (TabLayout) findViewById(R.id.tabs);            //tabLayout xml 아이디 연걸
