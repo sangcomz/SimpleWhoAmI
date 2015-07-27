@@ -174,7 +174,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void animFab(float scale) {
+    private void animFab(final float scale) {
+
         ViewCompat.animate(mFab)
 //                .translationYBy(deltaY)
 //                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR)
@@ -183,7 +184,21 @@ public class MainActivity extends AppCompatActivity {
                 .scaleX(scale)
                 .scaleY(scale)
                 .setDuration(250)
+                .withStartAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (scale == 1) mFab.setVisibility(View.VISIBLE);
+                    }
+                })
+                .withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (scale == 0) mFab.setVisibility(View.GONE);
+                    }
+                })
                 .withLayer()
                 .start();
+
+
     }
 }

@@ -41,32 +41,7 @@ public class Hobby extends Fragment {
 
         listView = (ListView)rootView.findViewById(R.id.lv);
 
-
         hobbys = new ArrayList<String>();
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-
-
 
         listView.setAdapter(new HobbyAdapter(getActivity(), hobbys));
 
