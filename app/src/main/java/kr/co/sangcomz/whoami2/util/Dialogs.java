@@ -5,11 +5,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.view.Window;
-<<<<<<< HEAD
-import android.widget.Button;
-=======
 import android.widget.EditText;
->>>>>>> 4b1b3fb89fd38eff85fc7f46ddb605ca2af8dfb0
+
 import android.widget.TextView;
 
 import kr.co.sangcomz.whoami2.MainActivity;
@@ -25,17 +22,6 @@ public class Dialogs {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_add_hobby);
 
-<<<<<<< HEAD
-        TextView txtAdd = (TextView)dialog.findViewById(R.id.btn_add);
-        TextView txtcancel = (TextView)dialog.findViewById(R.id.btn_cancel);
-
-        txtAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-=======
         final EditText etHobby = (EditText) dialog.findViewById(R.id.et_hobby);
         TextView txtAdd = (TextView) dialog.findViewById(R.id.txt_add);
         TextView txtCancel = (TextView) dialog.findViewById(R.id.txt_cancel);
@@ -61,9 +47,9 @@ public class Dialogs {
 
 
         dialog.show();
->>>>>>> 4b1b3fb89fd38eff85fc7f46ddb605ca2af8dfb0
 
-        txtcancel.setOnClickListener(new View.OnClickListener() {
+
+        txtCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
