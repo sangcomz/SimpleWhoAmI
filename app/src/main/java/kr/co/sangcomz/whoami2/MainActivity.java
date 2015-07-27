@@ -1,6 +1,5 @@
 package kr.co.sangcomz.whoami2;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -47,17 +46,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);        //tabLayout xml 아이디 연걸
         appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
 
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mFab.setVisibility(View.INVISIBLE);
-
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Dialogs().DialogHobby(MainActivity.this);
-
-            }
-        });
-
         mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager()); //adapter 객체 생성
 
         setSupportActionBar(toolbar);   //AppCompatActivity actionbar를 설정
@@ -70,17 +58,25 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
+
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mFab.setVisibility(View.INVISIBLE);
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Dialogs().DialogHobby(MainActivity.this);
+            }
+        });
+
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-//                Path path = mIsOut ? mPathIn : mPathOut;
                 if (currentPosition == 1) {
                     if (i < 0) {
                         animFab(0);
-//                    startAnimation(mFab, AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR, 500, mPathOut);
                     } else {
                         animFab(1);
-//                    startAnimation(mFab, AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR, 500, mPathIn);
                     }
                 }
 
@@ -132,9 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * viewPager에 adapter를 설정해준다.
-     *
-     * @param viewPager
-     * @param mainFragmentAdapter
      */
     public void setUpViewPager(ViewPager viewPager, MainFragmentAdapter mainFragmentAdapter) {
         mainFragmentAdapter.addFragment(new Profile(), "프로필"); //adapter에 Fragment를 더해준다.
@@ -174,16 +167,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 스케일 애니메이션
+     * @param scale 0 = 사라짐 1 = 원래 크기
+     */
     private void animFab(float scale) {
         ViewCompat.animate(mFab)
-//                .translationYBy(deltaY)
-//                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR)
+//                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR) //사라지는 모양
                 .setInterpolator(AnimUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR)
 //                .setInterpolator(AnimUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)
-                .scaleX(scale)
-                .scaleY(scale)
-                .setDuration(250)
-                .withLayer()
+                .scaleX(scale)      //x축 스케일
+                .scaleY(scale)      //y축 스케일
+                .setDuration(250)   //기간
+                .withLayer()        //????
                 .start();
     }
 }

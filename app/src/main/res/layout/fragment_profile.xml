@@ -1,9 +1,8 @@
-<android:android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android:android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/nested_scrollview"
-    android:padding = "20dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dp">
     <!--https://developer.android.com/reference/android/support/v4/widget/NestedScrollView.html-->
 
     <LinearLayout
@@ -12,10 +11,10 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/pic_profile" />
         <!--res values에 colors와 dimens를 이용해서 글자 크기를 지정해준다.-->
@@ -26,11 +25,13 @@
             android:layout_margin="10dp"
             android:background="#ffffff"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="15dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -38,11 +39,12 @@
                     android:text="이름"
                     android:textColor="@color/BasicTextColor"
                     android:textSize="@dimen/normal_edit_or_text_size" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
                     android:layout_marginRight="10dp"
+                    android:gravity="right"
                     android:text="정석원"
                     android:textColor="@color/BasicTextColor"
                     android:textSize="@dimen/small_edit_or_text_size" />
@@ -58,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="15dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -65,11 +68,12 @@
                     android:text="나이"
                     android:textColor="@color/BasicTextColor"
                     android:textSize="@dimen/normal_edit_or_text_size" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
                     android:layout_marginRight="10dp"
+                    android:gravity="right"
                     android:text="27"
                     android:textColor="@color/BasicTextColor"
                     android:textSize="@dimen/small_edit_or_text_size" />
