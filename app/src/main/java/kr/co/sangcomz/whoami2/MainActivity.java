@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     MainFragmentAdapter mainFragmentAdapter; //adapter 선언
     int currentPosition = 0;
 
+    public static ArrayList<String> hobbys;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

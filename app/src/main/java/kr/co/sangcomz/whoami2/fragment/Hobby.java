@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import kr.co.sangcomz.whoami2.MainActivity;
 import kr.co.sangcomz.whoami2.R;
 
 /**
@@ -22,7 +23,7 @@ public class Hobby extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
     ListView listView;
-    public static ArrayList<String> hobbys;
+
 
     public static HobbyAdapter hobbyAdapter;
 
@@ -40,8 +41,8 @@ public class Hobby extends Fragment {
         listView = (ListView)rootView.findViewById(R.id.lv);
 
 
-        hobbys = new ArrayList<String>();
-        hobbyAdapter = new HobbyAdapter(getActivity(), hobbys);
+        MainActivity.hobbys = new ArrayList<String>();
+        hobbyAdapter = new HobbyAdapter(getActivity(), MainActivity.hobbys);
 
         listView.setAdapter(hobbyAdapter);
 

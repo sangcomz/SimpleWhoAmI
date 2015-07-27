@@ -7,6 +7,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import kr.co.sangcomz.whoami2.MainActivity;
 import kr.co.sangcomz.whoami2.R;
 import kr.co.sangcomz.whoami2.fragment.Hobby;
 
@@ -28,7 +29,7 @@ public class Dialogs {
             @Override
             public void onClick(View v) {
                 if (etHobby.getText().toString().length() > 0) {
-                    Hobby.hobbys.add(etHobby.getText().toString());
+                    MainActivity.hobbys.add(etHobby.getText().toString());
                     Hobby.hobbyAdapter.notifyDataSetChanged();
                     dialog.dismiss();
                 }
