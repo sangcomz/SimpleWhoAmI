@@ -1,6 +1,5 @@
 package kr.co.sangcomz.whoami2;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -32,31 +31,24 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     AppBarLayout appBarLayout;
 
-    FloatingActionButton mFab;
+    FloatingActionButton mFab; // FloatingActionButton 선언
 
-    MainFragmentAdapter mainFragmentAdapter; //adapter 선언
-    int currentPosition = 0;
+    MainFragmentAdapter mainFragmentAdapter; //Fragment adapter 선언
+    int currentPosition = 0; //현재 선택된 페이지
+
+    public static ArrayList<String> hobbys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);         //툴바 xml 아이디 연걸
-        viewPager = (ViewPager) findViewById(R.id.viewpager);   //viewpager xml 아이디 연걸
-        tabLayout = (TabLayout) findViewById(R.id.tabs);        //tabLayout xml 아이디 연걸
-        appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        hobbys = new ArrayList<String>();
 
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mFab.setVisibility(View.INVISIBLE);
-
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Dialogs().DialogHobby(MainActivity.this);
-
-            }
-        });
+        toolbar = (Toolbar) findViewById(R.id.toolbar);             //툴바 xml 아이디 연걸
+        viewPager = (ViewPager) findViewById(R.id.viewpager);       //viewpager xml 아이디 연걸
+        tabLayout = (TabLayout) findViewById(R.id.tabs);            //tabLayout xml 아이디 연걸
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbar);    //appBarLayout xml 아이디 연걸
 
         mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager()); //adapter 객체 생성
 
@@ -70,23 +62,39 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
+        mFab = (FloatingActionButton) findViewById(R.id.fab); //FAB 선언
+
+        //fab 클릭 리스너.
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Dialogs().DialogHobby(MainActivity.this);
+            }
+        });
+
+        //appBarLayout 위치 변경에 따른 리스너.
+        //https://developer.android.com/reference/android/support/design/widget/AppBarLayout.OnOffsetChangedListener.html 리스너 설명
+        /**
+         * 선택된 탭이 취미일때, 앱바가 들어갈땐 액션버튼도 사라지도 앱바가 나타날땐 액션버튼이 나타난다.
+         */
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-//                Path path = mIsOut ? mPathIn : mPathOut;
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (currentPosition == 1) {
-                    if (i < 0) {
+                    if (verticalOffset < 0) {
                         animFab(0);
-//                    startAnimation(mFab, AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR, 500, mPathOut);
                     } else {
                         animFab(1);
-//                    startAnimation(mFab, AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR, 500, mPathIn);
                     }
                 }
 
             }
         });
 
+
+        /**
+         * 선택된 탭이 바뀔때 반응하는 리스너. 취미에서만 액션버튼을 사용하므로 나머지에선 animFab(0)을 통해서 액션버튼을 없애준다.
+         */
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -132,9 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * viewPager에 adapter를 설정해준다.
-     *
-     * @param viewPager
-     * @param mainFragmentAdapter
      */
     public void setUpViewPager(ViewPager viewPager, MainFragmentAdapter mainFragmentAdapter) {
         mainFragmentAdapter.addFragment(new Profile(), "프로필"); //adapter에 Fragment를 더해준다.
@@ -174,13 +179,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     private void animFab(final float scale) {
 
+=======
+    /**
+     * 스케일 애니메이션
+     *
+     * @param scale 0 = 사라짐 1 = 원래 크기
+     */
+    private void animFab(final float scale) {
+>>>>>>> 4b1b3fb89fd38eff85fc7f46ddb605ca2af8dfb0
         ViewCompat.animate(mFab)
-//                .translationYBy(deltaY)
-//                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR)
+//                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR) //사라지는 모양
                 .setInterpolator(AnimUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR)
 //                .setInterpolator(AnimUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)
+<<<<<<< HEAD
                 .scaleX(scale)
                 .scaleY(scale)
                 .setDuration(250)
@@ -197,6 +211,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .withLayer()
+=======
+                .scaleX(scale)      //x축 스케일
+                .scaleY(scale)      //y축 스케일
+                .withStartAction(new Runnable() {
+                    @Override
+                    public void run() { //애니메이션 시작과 함께 해줄 액션
+                        if (scale == 1)
+                            mFab.setVisibility(View.VISIBLE);
+                    }
+                })
+                .withEndAction(new Runnable() { //애니메이션 종료시 해줄 액션
+                    @Override
+                    public void run() {
+                        if (scale == 0)
+                            mFab.setVisibility(View.GONE);
+                    }
+                })
+                .setDuration(250)   //기간
+                .withLayer()        //????
+>>>>>>> 4b1b3fb89fd38eff85fc7f46ddb605ca2af8dfb0
                 .start();
 
 

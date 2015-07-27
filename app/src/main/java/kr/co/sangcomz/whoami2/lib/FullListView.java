@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ListView;
 
 import kr.co.sangcomz.whoami2.R;
-import kr.co.sangcomz.whoami2.fragment.Hobby;
 
 /**
  * Created by 석원 on 2015-07-21.
@@ -30,6 +29,10 @@ public class FullListView extends ListView {
 
         View view = (View) getParent().getParent().getParent();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4b1b3fb89fd38eff85fc7f46ddb605ca2af8dfb0
         int heightDp = (int) getResources().getDimension(R.dimen.list_item_height);
         int marginDp = (int) getResources().getDimension(R.dimen.list_view_margin);
 

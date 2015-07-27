@@ -1,22 +1,19 @@
 package kr.co.sangcomz.whoami2.fragment;
 
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import kr.co.sangcomz.whoami2.MainActivity;
 import kr.co.sangcomz.whoami2.R;
 
 /**
@@ -26,8 +23,10 @@ public class Hobby extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
     ListView listView;
-    ArrayList<String> hobbys;
 
+    public static HobbyAdapter hobbyAdapter; //어댑터 선언
+
+    //생성자
     public Hobby() {
         // Required empty public constructor
     }
@@ -36,21 +35,26 @@ public class Hobby extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment inflate 설명 :::: http://aroundck.tistory.com/39
         View rootView = inflater.inflate(R.layout.fragment_hobby, container, false);
 
         listView = (ListView)rootView.findViewById(R.id.lv);
 
+<<<<<<< HEAD
         hobbys = new ArrayList<String>();
 
         listView.setAdapter(new HobbyAdapter(getActivity(), hobbys));
+=======
+
+        hobbyAdapter = new HobbyAdapter(getActivity(), MainActivity.hobbys);
+
+        listView.setAdapter(hobbyAdapter);
+>>>>>>> 4b1b3fb89fd38eff85fc7f46ddb605ca2af8dfb0
 
         return rootView;
     }
 
-
-
-
+    //어댑터뷰 보면 좋을것같은 자료 http://www.slideshare.net/yjaeseok/20140808-android-study12adapterview
     public class HobbyAdapter extends BaseAdapter{
         ArrayList<String> hobbys;
         ViewHolder holder;
@@ -76,11 +80,6 @@ public class Hobby extends Fragment {
         public long getItemId(int i) {
             return i;
         }
-
-        public int getViewHeight(){return height;}
-
-
-
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
             if(view == null)
@@ -106,13 +105,12 @@ public class Hobby extends Fragment {
             return view;
         }
 
+        //ViewHolder 설명 :::: http://theeye.pe.kr/archives/1253
+        //http://bellgori.tistory.com/entry/Android-pattern-01-ViewHolder-pattern
         private class ViewHolder {
             private TextView txtNum;
             private TextView txtHobby;
 
         }
     }
-
-
-
 }
