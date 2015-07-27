@@ -171,13 +171,27 @@ public class MainActivity extends AppCompatActivity {
      * 스케일 애니메이션
      * @param scale 0 = 사라짐 1 = 원래 크기
      */
-    private void animFab(float scale) {
+    private void animFab(final float scale) {
         ViewCompat.animate(mFab)
 //                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR) //사라지는 모양
                 .setInterpolator(AnimUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR)
 //                .setInterpolator(AnimUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)
                 .scaleX(scale)      //x축 스케일
                 .scaleY(scale)      //y축 스케일
+                .withStartAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (scale == 1)
+                            mFab.setVisibility(View.VISIBLE);
+                    }
+                })
+                .withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (scale == 0)
+                            mFab.setVisibility(View.GONE);
+                    }
+                })
                 .setDuration(250)   //기간
                 .withLayer()        //????
                 .start();

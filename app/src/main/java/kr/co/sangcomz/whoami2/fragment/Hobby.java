@@ -22,7 +22,9 @@ public class Hobby extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
     ListView listView;
-    ArrayList<String> hobbys;
+    public static ArrayList<String> hobbys;
+
+    public static HobbyAdapter hobbyAdapter;
 
     public Hobby() {
         // Required empty public constructor
@@ -39,38 +41,12 @@ public class Hobby extends Fragment {
 
 
         hobbys = new ArrayList<String>();
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
-        hobbys.add("야구");
-        hobbys.add("농구");
-        hobbys.add("축구");
+        hobbyAdapter = new HobbyAdapter(getActivity(), hobbys);
 
-
-
-        listView.setAdapter(new HobbyAdapter(getActivity(), hobbys));
+        listView.setAdapter(hobbyAdapter);
 
         return rootView;
     }
-
-
-
 
     public class HobbyAdapter extends BaseAdapter{
         ArrayList<String> hobbys;
