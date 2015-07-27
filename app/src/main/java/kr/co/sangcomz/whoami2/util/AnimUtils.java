@@ -5,7 +5,8 @@ import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 
 /**
- * Created by pmueller on 24.6.15.
+ * 액션 INTERPOLATOR 선언해둔곳
+ * INTERPOLATOR = 안드로이드에서 정의해둔 애니메이션들.
  */
 public class AnimUtils {
 

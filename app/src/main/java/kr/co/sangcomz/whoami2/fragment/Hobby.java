@@ -74,11 +74,6 @@ public class Hobby extends Fragment {
         public long getItemId(int i) {
             return i;
         }
-
-        public int getViewHeight(){return height;}
-
-
-
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
             if(view == null)
@@ -104,6 +99,8 @@ public class Hobby extends Fragment {
             return view;
         }
 
+        //ViewHolder 설명 :::: http://theeye.pe.kr/archives/1253
+        //http://bellgori.tistory.com/entry/Android-pattern-01-ViewHolder-pattern
         private class ViewHolder {
             private TextView txtNum;
             private TextView txtHobby;
