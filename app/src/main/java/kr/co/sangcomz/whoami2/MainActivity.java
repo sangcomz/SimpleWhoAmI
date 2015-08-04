@@ -81,15 +81,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (currentPosition == 1) {
+                    System.out.println("aa");
                     if (verticalOffset < 0) {
                         animFab(0);
+                        System.out.println("aa");
                     } else {
                         animFab(1);
+                        System.out.println("bb");
                     }
                 }
 
             }
         });
+
 
 
         /**
@@ -181,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 스케일 애니메이션
-     *
      * @param scale 0 = 사라짐 1 = 원래 크기
      */
     private void animFab(final float scale) {

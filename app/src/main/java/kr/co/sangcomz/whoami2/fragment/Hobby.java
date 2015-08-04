@@ -59,7 +59,6 @@ public class Hobby extends Fragment {
             this.hobbys = hobbys;
             inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
-
         @Override
         public int getCount() {
             return hobbys.size();
@@ -76,6 +75,7 @@ public class Hobby extends Fragment {
         }
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
+
             if(view == null)
             {
                 view = inflater.inflate(R.layout.hobby_list_item, viewGroup, false);
@@ -94,7 +94,6 @@ public class Hobby extends Fragment {
             holder.txtNum.setText(String.valueOf(position + 1));
             holder.txtHobby.setText(hobbys.get(position));
 
-            height = view.getMeasuredHeight();
 
             return view;
         }
