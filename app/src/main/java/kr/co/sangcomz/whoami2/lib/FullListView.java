@@ -29,7 +29,6 @@ public class FullListView extends ListView {
 
         View view = (View) getParent().getParent().getParent();
 
-
         int heightDp = (int) getResources().getDimension(R.dimen.list_item_height);
         int marginDp = (int) getResources().getDimension(R.dimen.list_view_margin);
 

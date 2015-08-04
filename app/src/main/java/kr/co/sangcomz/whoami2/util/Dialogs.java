@@ -1,9 +1,11 @@
 package kr.co.sangcomz.whoami2.util;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
+
 import android.widget.TextView;
 
 import kr.co.sangcomz.whoami2.MainActivity;
@@ -45,5 +47,15 @@ public class Dialogs {
 
         dialog.show();
 
+
+        txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
     }
 }

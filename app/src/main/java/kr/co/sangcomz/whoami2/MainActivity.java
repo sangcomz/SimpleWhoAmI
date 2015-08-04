@@ -183,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
+
     /**
      * 스케일 애니메이션
      * @param scale 0 = 사라짐 1 = 원래 크기
@@ -192,24 +195,24 @@ public class MainActivity extends AppCompatActivity {
 //                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR) //사라지는 모양
                 .setInterpolator(AnimUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR)
 //                .setInterpolator(AnimUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)
-                .scaleX(scale)      //x축 스케일
-                .scaleY(scale)      //y축 스케일
+                .scaleX(scale)
+                .scaleY(scale)
+                .setDuration(250)
                 .withStartAction(new Runnable() {
                     @Override
-                    public void run() { //애니메이션 시작과 함께 해줄 액션
-                        if (scale == 1)
-                            mFab.setVisibility(View.VISIBLE);
+                    public void run() {
+                        if (scale == 1) mFab.setVisibility(View.VISIBLE);
                     }
                 })
-                .withEndAction(new Runnable() { //애니메이션 종료시 해줄 액션
+                .withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        if (scale == 0)
-                            mFab.setVisibility(View.GONE);
+                        if (scale == 0) mFab.setVisibility(View.GONE);
                     }
                 })
                 .setDuration(250)   //기간
                 .withLayer()        //????
                 .start();
+
     }
 }

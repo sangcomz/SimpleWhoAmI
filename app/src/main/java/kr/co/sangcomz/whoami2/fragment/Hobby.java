@@ -40,7 +40,9 @@ public class Hobby extends Fragment {
 
         listView = (ListView)rootView.findViewById(R.id.lv);
 
+        MainActivity.hobbys = new ArrayList<String>();
 
+        listView.setAdapter(new HobbyAdapter(getActivity(), MainActivity.hobbys));
         hobbyAdapter = new HobbyAdapter(getActivity(), MainActivity.hobbys);
 
         listView.setAdapter(hobbyAdapter);
