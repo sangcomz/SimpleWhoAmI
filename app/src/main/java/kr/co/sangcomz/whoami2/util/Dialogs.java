@@ -46,16 +46,5 @@ public class Dialogs {
 
 
         dialog.show();
-
-
-        txtCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-
-        dialog.show();
     }
 }
