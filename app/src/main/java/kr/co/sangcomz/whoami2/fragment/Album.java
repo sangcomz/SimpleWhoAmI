@@ -38,7 +38,7 @@ import kr.co.sangcomz.whoami2.R;
 public class Album extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
-    ArrayList<String> imagePath;
+    static ArrayList<String> imagePath;
     static String mCurrentPhotoPath;
     static String mLoaderPath;
     AlbumAdapter albumAdapter;
@@ -158,25 +158,29 @@ public class Album extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("requestCode :::: " + requestCode);
+        System.out.println("resultCode :::: " + resultCode);
+        System.out.println("data != null :::: " + data != null);
 
         switch (requestCode) {
             case 2:
                 if (resultCode == getActivity().RESULT_OK) {
-                    if (data != null) {
-                        Uri choiceImgUri = data.getData();
-                        System.out.println("path" + choiceImgUri.toString()); // logCat으로 경로확인.
+                    System.out.println(mCurrentPhotoPath); // logCat으로 경로확인.
 
-                        imagePath.add(choiceImgUri.toString());
-                        albumAdapter.notifyDataSetChanged();
+                    imagePath.add(mCurrentPhotoPath);
+                    albumAdapter.notifyDataSetChanged();
 
-
-                        //Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-                        // temp.jpg파일을 Bitmap으로 디코딩한다.
-
-                        //ImageView _image = (ImageView) findViewById(R.id.imageView);
-                        //_image.setImageBitmap(selectedImage);
-                        // temp.jpg파일을 이미지뷰에 씌운다.
+                    for (int i = 0; i < imagePath.size(); i++) {
+                        System.out.println("imagePath :::: " + imagePath.get(i));
                     }
+
+
+                    //Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+                    // temp.jpg파일을 Bitmap으로 디코딩한다.
+
+                    //ImageView _image = (ImageView) findViewById(R.id.imageView);
+                    //_image.setImageBitmap(selectedImage);
+                    // temp.jpg파일을 이미지뷰에 씌운다.
                 }
                 break;
             case 1:
@@ -184,6 +188,9 @@ public class Album extends Fragment {
                     System.out.println("mLoaderPath ::::: " + data.getDataString());
                     imagePath.add(mLoaderPath);
                     albumAdapter.notifyDataSetChanged();
+                    for (int i = 0; i < imagePath.size(); i++) {
+                        System.out.println("imagePath :::: " + imagePath.get(i));
+                    }
 //                    galleryAddPic();
 //                    scanFile(mCurrentPhotoPath);
                 }
@@ -192,10 +199,11 @@ public class Album extends Fragment {
 
     }
 
+
+
     //어댑터뷰 보면 좋을것같은 자료 http://www.slideshare.net/yjaeseok/20140808-android-study12adapterview
     public class AlbumAdapter extends BaseAdapter {
         ArrayList<String> imagePath;
-        ViewHolder holder;
         private LayoutInflater inflater;
 
 
@@ -211,7 +219,7 @@ public class Album extends Fragment {
 
         @Override
         public Object getItem(int i) {
-            return i;
+            return imagePath.get(i);
         }
 
         @Override
@@ -221,20 +229,19 @@ public class Album extends Fragment {
 
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
-
+            ViewHolder holder; //final?
             if (view == null) {
-                view = inflater.inflate(R.layout.hobby_list_item, viewGroup, false);
                 holder = new ViewHolder();
+                view = inflater.inflate(R.layout.album_list_item, viewGroup, false);
                 holder.imageView = (ImageView) view.findViewById(R.id.image_view);
                 view.setTag(holder);
             } else {
                 holder = (ViewHolder) view.getTag();
             }
 
+
             Glide.with(getActivity())
                     .load(imagePath.get(position))
-                    .centerCrop()
-                    .crossFade()
                     .into(holder.imageView);
 
             return view;
@@ -243,7 +250,7 @@ public class Album extends Fragment {
         //ViewHolder 설명 :::: http://theeye.pe.kr/archives/1253
         //http://bellgori.tistory.com/entry/Android-pattern-01-ViewHolder-pattern
         private class ViewHolder {
-            private ImageView imageView;
+            ImageView imageView;
         }
     }
 }

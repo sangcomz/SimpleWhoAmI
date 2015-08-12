@@ -1,5 +1,6 @@
 package kr.co.sangcomz.whoami2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -214,4 +215,5 @@ public class MainActivity extends AppCompatActivity {
                 .start();
 
     }
+
 }
