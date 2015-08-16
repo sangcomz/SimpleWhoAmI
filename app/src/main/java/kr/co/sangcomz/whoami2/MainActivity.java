@@ -1,5 +1,6 @@
 package kr.co.sangcomz.whoami2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);   //AppCompatActivity actionbar를 설정
 
-        getSupportActionBar().setTitle("who am i"); //타이틀 설정
+        getSupportActionBar().setTitle("프로필"); //타이틀 설정
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher); //아이콘 설정
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //아이콘 여부
 
@@ -81,19 +82,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (currentPosition == 1) {
-                    System.out.println("aa");
-                    if (verticalOffset < 0) {
+                    if (verticalOffset < 0)
                         animFab(0);
-                        System.out.println("aa");
-                    } else {
+                    else
                         animFab(1);
-                        System.out.println("bb");
-                    }
+
                 }
 
             }
         });
-
 
 
         /**
@@ -109,21 +106,25 @@ public class MainActivity extends AppCompatActivity {
                         animFab(0);
                         currentPosition = 0;
                         viewPager.setCurrentItem(position);
+                        getSupportActionBar().setTitle("프로필"); //타이틀 설정
                         break;
                     case 1:
                         animFab(1);
                         currentPosition = 1;
                         viewPager.setCurrentItem(position);
+                        getSupportActionBar().setTitle("취미"); //타이틀 설정
                         break;
                     case 2:
                         animFab(0);
                         currentPosition = 2;
                         viewPager.setCurrentItem(position);
+                        getSupportActionBar().setTitle("앨범"); //타이틀 설정
                         break;
                     case 3:
                         animFab(0);
                         currentPosition = 3;
                         viewPager.setCurrentItem(position);
+                        getSupportActionBar().setTitle("자유"); //타이틀 설정
                         break;
                 }
             }
@@ -184,10 +185,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     /**
      * 스케일 애니메이션
+     *
      * @param scale 0 = 사라짐 1 = 원래 크기
      */
     private void animFab(final float scale) {
@@ -215,4 +215,5 @@ public class MainActivity extends AppCompatActivity {
                 .start();
 
     }
+
 }

@@ -1,9 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="kr.co.sangcomz.whoami2.fragment.Album">
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nested_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <kr.co.sangcomz.whoami2.lib.FullGridView
+        android:id="@+id/gv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:numColumns="2"
+        android:layout_marginLeft="@dimen/list_view_margin"
+        android:layout_marginRight="@dimen/list_view_margin"
+        android:dividerHeight="0dp"
+        android:scrollbars="none" />
+
+
+</android.support.v4.widget.NestedScrollView>
