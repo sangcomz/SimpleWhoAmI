@@ -1,14 +1,18 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_camera"
         android:icon="@mipmap/ic_camera"
-        android:showAsAction="always|withText"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        myapp:showAsAction="ifRoom"
         android:title="camera" />
 
     <item
         android:id="@+id/action_gallery"
         android:icon="@mipmap/ic_picture"
-        android:showAsAction="always|withText"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        myapp:showAsAction="ifRoom"
         android:title="gallery" />
-
 </menu>

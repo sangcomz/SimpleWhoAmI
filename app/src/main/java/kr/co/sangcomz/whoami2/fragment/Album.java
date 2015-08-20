@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -171,6 +170,7 @@ public class Album extends Fragment {
                     albumAdapter.notifyDataSetChanged();
 
                     for (int i = 0; i < imagePath.size(); i++) {
+                        System.out.println("here1");
                         System.out.println("imagePath :::: " + imagePath.get(i));
                     }
 
@@ -185,10 +185,11 @@ public class Album extends Fragment {
                 break;
             case 1:
                 if (resultCode == getActivity().RESULT_OK) {
-                    System.out.println("mLoaderPath ::::: " + data.getDataString());
-                    imagePath.add(mLoaderPath);
+//                    System.out.println("mLoaderPath ::::: " + data.getDataString());
+                    imagePath.add(data.getDataString());
                     albumAdapter.notifyDataSetChanged();
                     for (int i = 0; i < imagePath.size(); i++) {
+                        System.out.println("here2");
                         System.out.println("imagePath :::: " + imagePath.get(i));
                     }
 //                    galleryAddPic();
@@ -242,6 +243,7 @@ public class Album extends Fragment {
 
             Glide.with(getActivity())
                     .load(imagePath.get(position))
+                    .centerCrop()
                     .into(holder.imageView);
 
             return view;

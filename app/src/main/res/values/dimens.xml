@@ -7,6 +7,10 @@
     <dimen name="small_edit_or_text_size">20sp</dimen>
 
     <dimen name="list_item_height">60dp</dimen>
+    <dimen name="actionbar_height">56dp</dimen>
     <dimen name="list_view_margin">30dp</dimen>
     <dimen name="divider_height">1dp</dimen>
+
+    <dimen name="grid_item_height">180dp</dimen>
+    <dimen name="grid_view_margin">30dp</dimen>
 </resources>
