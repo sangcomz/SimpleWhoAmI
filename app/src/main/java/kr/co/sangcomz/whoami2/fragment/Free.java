@@ -52,7 +52,6 @@ public class Free extends Fragment {
             extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
         private final TypedValue mTypedValue = new TypedValue();
-        private int mBackground;
         private Context context;
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -68,7 +67,6 @@ public class Free extends Fragment {
         }
         public RecyclerViewAdapter(Context context) {
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
-            mBackground = mTypedValue.resourceId;
             this.context = context;
         }
 
@@ -76,7 +74,6 @@ public class Free extends Fragment {
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recycler_item, parent, false);
-            view.setBackgroundResource(mBackground);
             return new ViewHolder(view);
         }
 
@@ -84,6 +81,7 @@ public class Free extends Fragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
 //            holder.cardView
+//            holder.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
         }
 
 
