@@ -1,6 +1,5 @@
 package kr.co.sangcomz.whoami2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.sangcomz.whoami2.fragment.Album;
-import kr.co.sangcomz.whoami2.fragment.Free;
+import kr.co.sangcomz.whoami2.fragment.Portfolio;
 import kr.co.sangcomz.whoami2.fragment.Hobby;
 import kr.co.sangcomz.whoami2.fragment.Profile;
 import kr.co.sangcomz.whoami2.util.AnimUtils;
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                         animFab(0);
                         currentPosition = 3;
                         viewPager.setCurrentItem(position);
-                        getSupportActionBar().setTitle("자유"); //타이틀 설정
+                        getSupportActionBar().setTitle("포트폴리오"); //타이틀 설정
                         break;
                 }
             }
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         mainFragmentAdapter.addFragment(new Profile(), "프로필"); //adapter에 Fragment를 더해준다.
         mainFragmentAdapter.addFragment(new Hobby(), "취미");
         mainFragmentAdapter.addFragment(new Album(), "앨범");
-        mainFragmentAdapter.addFragment(new Free(), "자유");
+        mainFragmentAdapter.addFragment(new Portfolio(), "포트폴리오");
         viewPager.setAdapter(mainFragmentAdapter);
     }
 
