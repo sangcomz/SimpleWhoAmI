@@ -22,7 +22,7 @@ import kr.co.sangcomz.whoami2.bean.PortfolioData;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Free extends Fragment {
+public class portfolio extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
     LinearLayoutManager linearLayoutManager;
@@ -30,7 +30,7 @@ public class Free extends Fragment {
     RecyclerView recyclerView;
     ArrayList<PortfolioData> portfolioDatas = new ArrayList<>();
 
-    public Free() {
+    public portfolio() {
         // Required empty public constructor
     }
 
