@@ -4,6 +4,7 @@ package kr.co.sangcomz.whoami2.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class Portfolio extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
     LinearLayoutManager linearLayoutManager;
+    GridLayoutManager gridLayoutManager;
     RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
     ArrayList<PortfolioData> portfolioDatas = new ArrayList<>();
@@ -44,6 +46,7 @@ public class Portfolio extends Fragment {
         //http://www.kmshack.kr/android-recyclerview///
         recyclerView = (RecyclerView) rv.findViewById(R.id.recyclerview);
         linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
+        gridLayoutManager = new GridLayoutManager(recyclerView.getContext(), 2);
         portfolioDatas.add(new PortfolioData(R.mipmap.portfolio1, "BeOnTime", "지각비를 관리하는 앱"));
         portfolioDatas.add(new PortfolioData(R.mipmap.portfolio2, "메아리", "가속도 센서, 위치, 알람을 이용한 메모장 앱"));
         portfolioDatas.add(new PortfolioData(R.mipmap.portfolio3, "골라줘", "2~4가지를 선택해주는 앱"));
@@ -54,10 +57,12 @@ public class Portfolio extends Fragment {
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(linearLayoutManager);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), portfolioDatas);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
 
     public class RecyclerViewAdapter
             extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
