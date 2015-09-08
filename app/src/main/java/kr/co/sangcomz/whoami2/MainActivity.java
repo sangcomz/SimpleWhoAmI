@@ -17,7 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.sangcomz.whoami2.fragment.Album;
+<<<<<<< HEAD
 import kr.co.sangcomz.whoami2.fragment.portfolio;
+=======
+import kr.co.sangcomz.whoami2.fragment.Portfolio;
+>>>>>>> 14709b85c5026a8f5d059a7576969c6d49caf351
 import kr.co.sangcomz.whoami2.fragment.Hobby;
 import kr.co.sangcomz.whoami2.fragment.Profile;
 import kr.co.sangcomz.whoami2.util.AnimUtils;
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         animFab(0);
                         currentPosition = 3;
                         viewPager.setCurrentItem(position);
-                        getSupportActionBar().setTitle("자유"); //타이틀 설정
+                        getSupportActionBar().setTitle("포트폴리오"); //타이틀 설정
                         break;
                 }
             }
@@ -149,7 +153,11 @@ public class MainActivity extends AppCompatActivity {
         mainFragmentAdapter.addFragment(new Profile(), "프로필"); //adapter에 Fragment를 더해준다.
         mainFragmentAdapter.addFragment(new Hobby(), "취미");
         mainFragmentAdapter.addFragment(new Album(), "앨범");
+<<<<<<< HEAD
         mainFragmentAdapter.addFragment(new portfolio(), "포트폴리오");
+=======
+        mainFragmentAdapter.addFragment(new Portfolio(), "포트폴리오");
+>>>>>>> 14709b85c5026a8f5d059a7576969c6d49caf351
         viewPager.setAdapter(mainFragmentAdapter);
     }
 

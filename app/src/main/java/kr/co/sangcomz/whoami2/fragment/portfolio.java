@@ -22,7 +22,7 @@ import kr.co.sangcomz.whoami2.bean.PortfolioData;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class portfolio extends Fragment {
+public class Portfolio extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
     LinearLayoutManager linearLayoutManager;
@@ -30,7 +30,7 @@ public class portfolio extends Fragment {
     RecyclerView recyclerView;
     ArrayList<PortfolioData> portfolioDatas = new ArrayList<>();
 
-    public portfolio() {
+    public Portfolio() {
         // Required empty public constructor
     }
 
@@ -40,7 +40,8 @@ public class portfolio extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rv = inflater.inflate(
-                R.layout.fragment_free, container, false);
+                R.layout.fragment_portfolio, container, false);
+        //http://www.kmshack.kr/android-recyclerview///
         recyclerView = (RecyclerView) rv.findViewById(R.id.recyclerview);
         linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
         portfolioDatas.add(new PortfolioData(R.mipmap.portfolio1, "BeOnTime", "지각비를 관리하는 앱"));
@@ -58,22 +59,20 @@ public class portfolio extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    public static class RecyclerViewAdapter
+    public class RecyclerViewAdapter
             extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
         ArrayList<PortfolioData> portfolioDatas = new ArrayList<>();
         Context context;
 
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
 
-            public final View mView;
             public final ImageView imgPortfolio;
             public final TextView title;
             public final TextView content;
 
             public ViewHolder(View view) {
                 super(view);
-                mView = view;
                 imgPortfolio = (ImageView) view.findViewById(R.id.img_portfolio);
                 title = (TextView) view.findViewById(R.id.txt_name);
                 content = (TextView) view.findViewById(R.id.txt_contents);
@@ -88,7 +87,7 @@ public class portfolio extends Fragment {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recycler_item, parent, false);
+                    .inflate(R.layout.portfolio_item, parent, false);
             return new ViewHolder(view);
         }
 
