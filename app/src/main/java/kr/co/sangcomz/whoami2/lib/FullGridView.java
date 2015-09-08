@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import kr.co.sangcomz.whoami2.R;
 
@@ -24,15 +23,16 @@ public class FullGridView extends GridView {
         super(context, attrs, defStyleAttr);
     }
 
-//    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-////
-////        View view = (View) getParent().getParent().getParent();
-////
-////        int heightDp = (int) getResources().getDimension(R.dimen.list_item_height);
-////        int marginDp = (int) getResources().getDimension(R.dimen.list_view_margin);
-////
-////        setMeasuredDimension(view.getMeasuredWidth() - (marginDp*2), (heightDp) * getAdapter().getCount());
-//    }
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        View view = (View) getParent().getParent().getParent();
+        int gridDp = (int) getResources().getDimension(R.dimen.grid_item_size);
+
+        if (getAdapter().getCount() > 0) {
+            int height = (getAdapter().getCount() / 2 * (gridDp)) + (getAdapter().getCount() % 2) * gridDp;
+            setMeasuredDimension(view.getMeasuredWidth(), height);
+        }
+
+    }
 }

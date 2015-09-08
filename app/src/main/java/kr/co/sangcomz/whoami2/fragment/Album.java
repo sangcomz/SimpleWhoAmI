@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -64,6 +63,7 @@ public class Album extends Fragment {
         gridView = (GridView) rootView.findViewById(R.id.gv);
         albumAdapter = new AlbumAdapter(getActivity(), imagePath);
         gridView.setAdapter(albumAdapter);
+
         // Inflate the layout for this fragment
         return rootView;
 
@@ -158,9 +158,6 @@ public class Album extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("requestCode :::: " + requestCode);
-        System.out.println("resultCode :::: " + resultCode);
-        System.out.println("data != null :::: " + data != null);
 
         switch (requestCode) {
             case 2:
@@ -185,8 +182,8 @@ public class Album extends Fragment {
                 break;
             case 1:
                 if (resultCode == getActivity().RESULT_OK) {
-                    System.out.println("mLoaderPath ::::: " + data.getDataString());
-                    imagePath.add(mLoaderPath);
+//                    System.out.println("mLoaderPath ::::: " + data.getDataString());
+                    imagePath.add(data.getDataString());
                     albumAdapter.notifyDataSetChanged();
                     for (int i = 0; i < imagePath.size(); i++) {
                         System.out.println("imagePath :::: " + imagePath.get(i));
@@ -240,8 +237,10 @@ public class Album extends Fragment {
             }
 
 
+            System.out.println("image Path :::: " + imagePath.get(position));
             Glide.with(getActivity())
                     .load(imagePath.get(position))
+                    .centerCrop()
                     .into(holder.imageView);
 
             return view;

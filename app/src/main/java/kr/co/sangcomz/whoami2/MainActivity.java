@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         mainFragmentAdapter.addFragment(new Album(), "앨범");
         mainFragmentAdapter.addFragment(new Portfolio(), "포트폴리오");
         viewPager.setAdapter(mainFragmentAdapter);
+        viewPager.setOffscreenPageLimit(4); //4
     }
 
     //http://blog.daum.net/mailss/19 FragmentPagerAdapter 설명
