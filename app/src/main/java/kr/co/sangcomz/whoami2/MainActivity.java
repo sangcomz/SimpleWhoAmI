@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         //appBarLayout 위치 변경에 따른 리스너.
         //https://developer.android.com/reference/android/support/design/widget/AppBarLayout.OnOffsetChangedListener.html 리스너 설명
         /**
-         * 선택된 탭이 취미일때, 앱바가 들어갈땐 액션버튼도 사라지도 앱바가 나타날땐 액션버튼이 나타난다.
+         * 선택된 탭이 취미일때, 앱바가 들어갈땐 액션버튼도 사라지고 앱바가 나타날땐 액션버튼이 나타난다.
          */
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override

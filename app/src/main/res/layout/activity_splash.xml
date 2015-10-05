@@ -9,6 +9,7 @@
     <!--TextView 속성 http://forenty.tistory.com/37-->
 
     <TextView
+        android:id="@+id/main_text"
         android:textSize="60dp"
         android:textColor="#ffffff"
         android:gravity="center"
