@@ -1,14 +1,15 @@
-<android:android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android:android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/nested_scrollview"
-    layout_width="match_parent"
     layout_height="match_parent"
-    android:padding="20dp"
+    layout_width="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
     <!--https://developer.android.com/reference/android/support/v4/widget/NestedScrollView.html-->
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
