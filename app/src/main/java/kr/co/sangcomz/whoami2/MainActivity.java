@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setDuration(250)   //기간
-                .withLayer()        //????
+                .withLayer()        //Software Type Hardware Type
                 .start();
 
     }

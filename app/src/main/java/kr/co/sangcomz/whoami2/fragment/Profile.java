@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
 
 import kr.co.sangcomz.whoami2.R;
 
@@ -18,8 +16,6 @@ import kr.co.sangcomz.whoami2.R;
 public class Profile extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
-
-    ImageView profile;
 
     public Profile() {
         // Required empty public constructor
