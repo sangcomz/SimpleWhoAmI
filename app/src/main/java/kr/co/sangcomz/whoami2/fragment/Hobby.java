@@ -84,9 +84,9 @@ public class Hobby extends Fragment {
                 holder = new ViewHolder();
                 holder.txtNum = (TextView)view.findViewById(R.id.txt_num);
                 holder.txtHobby = (TextView)view.findViewById(R.id.txt_hobby);
-                view.setTag(holder);
+                view.setTag(holder); // 뷰는 setTag로 Object타입의 인스턴스를 저장할 수 있음 ViewHolder 패턴을 구성하는 핵심원리
             } else {
-                holder = (ViewHolder) view.getTag();
+                holder = (ViewHolder) view.getTag();// setTag로 넣어두었던 ViewHolder 인스턴스를 가져온다.
             }
 
             holder.txtNum.setText("");
