@@ -38,13 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
     int currentPosition = 0; //현재 선택된 페이지
 
-    public static ArrayList<String> hobbys;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hobbys = new ArrayList<String>();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);             //툴바 xml 아이디 연걸
         viewPager = (ViewPager) findViewById(R.id.viewpager);       //viewpager xml 아이디 연걸

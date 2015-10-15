@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import kr.co.sangcomz.whoami2.MainActivity;
 import kr.co.sangcomz.whoami2.R;
 
 /**
@@ -26,6 +25,7 @@ public class Hobby extends Fragment {
     ListView listView;
 
     public static HobbyAdapter hobbyAdapter; //어댑터 선언
+    public static ArrayList<String> hobbys;
 
     //생성자
     public Hobby() {
@@ -41,7 +41,7 @@ public class Hobby extends Fragment {
 
         listView = (ListView)rootView.findViewById(R.id.lv);
 
-        MainActivity.hobbys = new ArrayList<String>();
+        hobbys = new ArrayList<String>();
 
 
 
@@ -56,7 +56,7 @@ public class Hobby extends Fragment {
         });
 
 //        listView.setAdapter(new HobbyAdapter(getActivity(), MainActivity.hobbys));
-        hobbyAdapter = new HobbyAdapter(getActivity(), MainActivity.hobbys);
+        hobbyAdapter = new HobbyAdapter(getActivity(), hobbys);
 
         listView.setAdapter(hobbyAdapter);
 
