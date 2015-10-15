@@ -1,13 +1,13 @@
 package kr.co.sangcomz.whoami2;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-
-public class SplashActivity extends ActionBarActivity {
+public class SplashActivity extends AppCompatActivity {
 
     TextView mainTxt;
 
@@ -40,11 +40,12 @@ public class SplashActivity extends ActionBarActivity {
 //        });
 //        thread.start();
 
+
+
         //http://developer.android.com/reference/java/lang/Runnable.html 런어블에 관한 api
         Runnable mRunnable = new Runnable() {
             @Override
             public void run() {
-                mainTxt.setText("변하는지?"); //잘 작동
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();

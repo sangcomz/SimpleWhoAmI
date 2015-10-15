@@ -15,10 +15,8 @@
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@null"
             android:layout_marginLeft="@dimen/list_view_margin"
             android:layout_marginRight="@dimen/list_view_margin"
-            android:dividerHeight="0dp"
             android:scrollbars="none" />
 
 

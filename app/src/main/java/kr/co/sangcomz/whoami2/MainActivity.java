@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.sangcomz.whoami2.fragment.Album;
-import kr.co.sangcomz.whoami2.fragment.Portfolio;
 import kr.co.sangcomz.whoami2.fragment.Hobby;
+import kr.co.sangcomz.whoami2.fragment.Portfolio;
 import kr.co.sangcomz.whoami2.fragment.Profile;
 import kr.co.sangcomz.whoami2.util.AnimUtils;
 import kr.co.sangcomz.whoami2.util.Dialogs;
@@ -29,11 +29,13 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
+    MainFragmentAdapter mainFragmentAdapter; //Fragment adapter 선언
+
     AppBarLayout appBarLayout;
 
     FloatingActionButton mFab; // FloatingActionButton 선언
 
-    MainFragmentAdapter mainFragmentAdapter; //Fragment adapter 선언
+
     int currentPosition = 0; //현재 선택된 페이지
 
     public static ArrayList<String> hobbys;
@@ -42,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         hobbys = new ArrayList<String>();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);             //툴바 xml 아이디 연걸
@@ -98,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                mFab.setVisibility(View.VISIBLE);
                 int position = tab.getPosition();
                 switch (position) {
                     case 0:
@@ -191,13 +191,13 @@ public class MainActivity extends AppCompatActivity {
      * @param scale 0 = 사라짐 1 = 원래 크기
      */
     private void animFab(final float scale) {
+
         ViewCompat.animate(mFab)
 //                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR) //사라지는 모양
                 .setInterpolator(AnimUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR)
 //                .setInterpolator(AnimUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)
                 .scaleX(scale)
                 .scaleY(scale)
-                .setDuration(250)
                 .withStartAction(new Runnable() {
                     @Override
                     public void run() {

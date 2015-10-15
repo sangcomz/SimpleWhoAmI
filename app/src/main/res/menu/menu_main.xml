@@ -3,13 +3,11 @@
     <item
         android:id="@+id/action_camera"
         android:icon="@mipmap/ic_camera"
-        android:title="camera"
-        app:showAsAction="always" />
+        android:title="camera" />
 
     <item
         android:id="@+id/action_gallery"
         android:icon="@mipmap/ic_picture"
-        android:title="gallery"
-        app:showAsAction="always" />
+        android:title="gallery" />
 
 </menu>

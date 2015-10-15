@@ -20,6 +20,8 @@ public class Dialogs {
 //        final Dialog dialog = new Dialog(context, R.style.Base_Theme_AppCompat_Light_Dialog);
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        final Dialog dialog = new Dialog(context, R.style.Theme_AppCompat_Light_Dialog);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_add_hobby);
 
 

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -42,7 +43,19 @@ public class Hobby extends Fragment {
 
         MainActivity.hobbys = new ArrayList<String>();
 
-        listView.setAdapter(new HobbyAdapter(getActivity(), MainActivity.hobbys));
+
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                MainActivity.hobbys.remove(position);
+//                hobbyAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+
+//        listView.setAdapter(new HobbyAdapter(getActivity(), MainActivity.hobbys));
         hobbyAdapter = new HobbyAdapter(getActivity(), MainActivity.hobbys);
 
         listView.setAdapter(hobbyAdapter);
@@ -68,7 +81,7 @@ public class Hobby extends Fragment {
 
         @Override
         public Object getItem(int i) {
-            return i;
+            return hobbys.get(i);
         }
 
         @Override
@@ -92,10 +105,8 @@ public class Hobby extends Fragment {
             holder.txtNum.setText("");
             holder.txtHobby.setText("");
 
-
             holder.txtNum.setText(String.valueOf(position + 1));
             holder.txtHobby.setText(hobbys.get(position));
-
 
             return view;
         }
@@ -105,7 +116,6 @@ public class Hobby extends Fragment {
         private class ViewHolder {
             private TextView txtNum;
             private TextView txtHobby;
-
         }
     }
 }

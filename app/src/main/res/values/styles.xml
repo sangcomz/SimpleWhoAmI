@@ -9,6 +9,8 @@
         <!--<item name="android:dialogTheme"></item>-->
     </style>
 
+
+
     <!--<style name="MyDialogTheme" parent="Base.Theme.AppCompat.Light.Dialog">-->
         <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
         <!--<item name="android:background">@color/tr</item>-->
