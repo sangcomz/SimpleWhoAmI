@@ -3,13 +3,11 @@ package kr.co.sangcomz.whoami2.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +20,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -41,12 +38,7 @@ public class Album extends Fragment {
     static String mCurrentPhotoPath;
     static String mLoaderPath;
     AlbumAdapter albumAdapter;
-
     GridView gridView;
-
-    public Album() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,15 +58,12 @@ public class Album extends Fragment {
 
         // Inflate the layout for this fragment
         return rootView;
-
-
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.menu_main, menu);
-
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -88,31 +77,38 @@ public class Album extends Fragment {
             pickImage();
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 
     public void pickImage() {
         Intent intent = new Intent(
-                Intent.ACTION_PICK,      // 또는 ACTION_PICK
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");              // 모든 이미지
-        //intent.putExtra("crop", "true");        // Crop기능 활성화
-        intent.putExtra("outputFormat",         // 포맷방식
-                Bitmap.CompressFormat.JPEG.toString());
-
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI); //sd card Image
+//      EXTERNAL_CONTENT_URI	The content:// style URI for the "primary" external storage volume.
+//      INTERNAL_CONTENT_URI	The content:// style URI for the internal storage.
         startActivityForResult(intent, 1);
     }
 
     public void takePicture() {
         /////////////////////camera/////////////////////////
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//암시적 인텐트.
+        //////////////암시적 인텐트///////////////////
+        //ACTION_VIEW content://contacts/people/1 - 1번 역락처 정보를 표시한다.
+        //ACTION_DIAL content://contacts/people/1 - 1번 연락처로 전화걸기 화면을 표시한다.
+        //ACTION_VIEW tel:01012345678 - 010-1234-5678 번호로 전화걸기 화면표시.
+        //ACTION_DIAL tel:01012345678 - 010-1234-5678 번호로 전화걸기 화면표시.
+        //ACTION_CALL tel:01012345678 - 010-1234-5678 번호로 바로 전화 걸기.
+        //ACTION_EDIT content://contacts/people/1 - 1번 역락처 정보를 편집한다.
+        //ACTION_VIEW content://contacts/people/ - 연락처 리스트를 표시한다.
+
+        //resolveActivity :::: Determine the best action to perform for a given Intent.
+        System.out.println("takePictureIntent.resolveActivity(getActivity().getPackageManager()) :::: " +
+                takePictureIntent.resolveActivity(getActivity().getPackageManager()));
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
             try {
-                photoFile = createImageFile();
+                photoFile = createImageFile(); //이미 파일을 만들어버림. 실패할경우 파일 삭제.
             } catch (IOException ex) {
                 // Error occurred while creating the File
             }
@@ -124,18 +120,6 @@ public class Album extends Fragment {
                 startActivityForResult(takePictureIntent, 2);
             }
         }
-    }
-
-    private void galleryAddPic() {
-        File f = new File(mCurrentPhotoPath);
-        Log.d(mCurrentPhotoPath, f.getAbsolutePath());
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        Uri contentUri = Uri.fromFile(f);
-        imagePath.add(mLoaderPath);
-        System.out.println("mLoaderPath ::::: " + mLoaderPath);
-        mLoaderPath = "";
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, contentUri);
-        getActivity().sendBroadcast(mediaScanIntent);
     }
 
     private File createImageFile() throws IOException {   //파일 만들기
@@ -150,8 +134,7 @@ public class Album extends Fragment {
                 storageDir      /* directory */
         );
         // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-        mLoaderPath = "file://" + image.getAbsolutePath();
+        mLoaderPath = image.getAbsolutePath();
         return image;
     }
 
@@ -162,34 +145,29 @@ public class Album extends Fragment {
         switch (requestCode) {
             case 2:
                 if (resultCode == getActivity().RESULT_OK) {
-                    System.out.println(mCurrentPhotoPath); // logCat으로 경로확인.
+//                    System.out.println(mCurrentPhotoPath); // logCat으로 경로확인.
 
-                    imagePath.add(mCurrentPhotoPath);
+//                    imagePath.add(mCurrentPhotoPath);
+                    imagePath.add(mLoaderPath);
                     albumAdapter.notifyDataSetChanged();
 
-                    for (int i = 0; i < imagePath.size(); i++) {
-                        System.out.println("imagePath :::: " + imagePath.get(i));
-                    }
-
-
-                    //Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-                    // temp.jpg파일을 Bitmap으로 디코딩한다.
-
-                    //ImageView _image = (ImageView) findViewById(R.id.imageView);
-                    //_image.setImageBitmap(selectedImage);
-                    // temp.jpg파일을 이미지뷰에 씌운다.
+//                    for (int i = 0; i < imagePath.size(); i++) {
+//                        System.out.println("imagePath :::: " + imagePath.get(i));
+//                    }
+                } else {
+                    File file = new File(mLoaderPath);
+                    file.delete();
                 }
+
                 break;
             case 1:
                 if (resultCode == getActivity().RESULT_OK) {
-//                    System.out.println("mLoaderPath ::::: " + data.getDataString());
+                    System.out.println("mLoaderPath ::::: " + data.getDataString());
                     imagePath.add(data.getDataString());
                     albumAdapter.notifyDataSetChanged();
-                    for (int i = 0; i < imagePath.size(); i++) {
-                        System.out.println("imagePath :::: " + imagePath.get(i));
-                    }
-//                    galleryAddPic();
-//                    scanFile(mCurrentPhotoPath);
+//                    for (int i = 0; i < imagePath.size(); i++) {
+//                        System.out.println("imagePath :::: " + imagePath.get(i));
+//                    }
                 }
                 break;
         }
@@ -197,12 +175,10 @@ public class Album extends Fragment {
     }
 
 
-
     //어댑터뷰 보면 좋을것같은 자료 http://www.slideshare.net/yjaeseok/20140808-android-study12adapterview
     public class AlbumAdapter extends BaseAdapter {
         ArrayList<String> imagePath;
         private LayoutInflater inflater;
-
 
         AlbumAdapter(Context context, ArrayList<String> imagePath) {
             this.imagePath = imagePath;
