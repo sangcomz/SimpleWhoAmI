@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
-    xmlns:android="http://schemas.android.com/apk/res/android">
     <!--https://developer.android.com/reference/android/support/v4/widget/NestedScrollView.html-->
 
     <LinearLayout
@@ -46,12 +45,13 @@
                     android:textColor="@color/BasicTextColor"
                     android:textSize="@dimen/normal_edit_or_text_size" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:gravity="right"
-                    android:background="@drawable/border_edit_text"
+                    android:text="석원"
+                    android:background="@null"
                     android:textColor="@color/BasicTextColor"
                     android:textSize="@dimen/small_edit_or_text_size" />
             </LinearLayout>

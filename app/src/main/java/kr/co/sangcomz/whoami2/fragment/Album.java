@@ -35,7 +35,6 @@ public class Album extends Fragment {
 //import android.support.v4.app.Fragment; 변경해줘야함
 
     static ArrayList<String> imagePath;
-    static String mCurrentPhotoPath;
     static String mLoaderPath;
     AlbumAdapter albumAdapter;
     GridView gridView;
