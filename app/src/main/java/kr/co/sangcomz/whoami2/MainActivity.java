@@ -4,18 +4,13 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import kr.co.sangcomz.whoami2.adapter.MainFragmentAdapter;
 import kr.co.sangcomz.whoami2.fragment.Album;
 import kr.co.sangcomz.whoami2.fragment.Hobby;
 import kr.co.sangcomz.whoami2.fragment.Portfolio;
@@ -30,15 +25,9 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     MainFragmentAdapter mainFragmentAdapter; //Fragment adapter 선언
-
     AppBarLayout appBarLayout;
-
     FloatingActionButton mFab; // FloatingActionButton 선언
-
-
     int currentPosition = 0; //현재 선택된 페이지
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,20 +39,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);            //tabLayout xml 아이디 연걸
         appBarLayout = (AppBarLayout) findViewById(R.id.appbar);    //appBarLayout xml 아이디 연걸
 
-        mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager()); //adapter 객체 생성
-
-        setSupportActionBar(toolbar);   //AppCompatActivity actionbar를 설정
-
-        getSupportActionBar().setTitle("프로필"); //타이틀 설정
-        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher); //아이콘 설정
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //아이콘 여부
-
-        setUpViewPager(viewPager, mainFragmentAdapter); //viewPager에  adapter를 달아준다.
-
-        tabLayout.setupWithViewPager(viewPager);
-
         mFab = (FloatingActionButton) findViewById(R.id.fab); //FAB 선언
-
         //fab 클릭 리스너.
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
                 new Dialogs().DialogHobby(MainActivity.this);
             }
         });
+
+        mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager()); //adapter 객체 생성
+        setUpViewPager(viewPager, mainFragmentAdapter); //viewPager에  adapter를 달아준다.
+        tabLayout.setupWithViewPager(viewPager);
+
 
         //appBarLayout 위치 변경에 따른 리스너.
         //https://developer.android.com/reference/android/support/design/widget/AppBarLayout.OnOffsetChangedListener.html 리스너 설명
@@ -91,11 +72,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         /**
          * 선택된 탭이 바뀔때 반응하는 리스너. 취미에서만 액션버튼을 사용하므로 나머지에선 animFab(0)을 통해서 액션버튼을 없애준다.
          */
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
@@ -141,6 +121,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void setToolbar() {
+        setSupportActionBar(toolbar);   //AppCompatActivity actionbar를 설정
+
+        getSupportActionBar().setTitle("프로필"); //타이틀 설정
+        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher); //아이콘 설정
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //아이콘 여부
+    }
+
     /**
      * viewPager에 adapter를 설정해준다.
      */
@@ -153,48 +141,14 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(4); //4
     }
 
-    //http://blog.daum.net/mailss/19 FragmentPagerAdapter 설명
-    public class MainFragmentAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
-
-        public MainFragmentAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragments.add(fragment); //받은 프레그먼트를 리스트에 더해준다.
-            mFragmentTitles.add(title);//받은 String을 리스트에 더해준다.
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitles.get(position);
-        }
-    }
-
-
     /**
      * 스케일 애니메이션
      *
      * @param scale 0 = 사라짐 1 = 원래 크기
      */
     private void animFab(final float scale) {
-
         ViewCompat.animate(mFab)
-//                .setInterpolator(AnimUtils.FAST_OUT_SLOW_IN_INTERPOLATOR) //사라지는 모양
                 .setInterpolator(AnimUtils.FAST_OUT_LINEAR_IN_INTERPOLATOR)
-//                .setInterpolator(AnimUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)
                 .scaleX(scale)
                 .scaleY(scale)
                 .withStartAction(new Runnable() {
