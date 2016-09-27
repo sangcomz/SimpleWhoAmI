@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        setToolbar();
+
         mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager()); //adapter 객체 생성
         setUpViewPager(viewPager, mainFragmentAdapter); //viewPager에  adapter를 달아준다.
         tabLayout.setupWithViewPager(viewPager);

@@ -29,7 +29,7 @@ public class Portfolio extends Fragment {
     GridLayoutManager gridLayoutManager;
     RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
-    ArrayList<PortfolioData> portfolioDatas = new ArrayList<>();
+    ArrayList<PortfolioData> portfolioDataList = new ArrayList<>();
 
 
     @Override
@@ -42,10 +42,10 @@ public class Portfolio extends Fragment {
         recyclerView = (RecyclerView) rv.findViewById(R.id.recyclerview);
         linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
         gridLayoutManager = new GridLayoutManager(recyclerView.getContext(), 2);
-        portfolioDatas.add(new PortfolioData(R.mipmap.portfolio1, "BeOnTime", "지각비를 관리하는 앱"));
-        portfolioDatas.add(new PortfolioData(R.mipmap.portfolio2, "메아리", "가속도 센서, 위치, 알람을 이용한 메모장 앱"));
-        portfolioDatas.add(new PortfolioData(R.mipmap.portfolio3, "골라줘", "2~4가지를 선택해주는 앱"));
-        portfolioDatas.add(new PortfolioData(R.mipmap.portfolio4, "골라조", "영화, 장소, 음식, 일반적인것을 선택해주는 앱"));
+        portfolioDataList.add(new PortfolioData(R.mipmap.portfolio1, "BeOnTime", "지각비를 관리하는 앱"));
+        portfolioDataList.add(new PortfolioData(R.mipmap.portfolio2, "메아리", "가속도 센서, 위치, 알람을 이용한 메모장 앱"));
+        portfolioDataList.add(new PortfolioData(R.mipmap.portfolio3, "골라줘", "2~4가지를 선택해주는 앱"));
+        portfolioDataList.add(new PortfolioData(R.mipmap.portfolio4, "골라조", "영화, 장소, 음식, 일반적인것을 선택해주는 앱"));
         setupRecyclerView(recyclerView);
 
         return rv;
@@ -54,7 +54,7 @@ public class Portfolio extends Fragment {
     private void setupRecyclerView(RecyclerView recyclerView) {
 //        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), portfolioDatas);
+        recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), portfolioDataList);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
