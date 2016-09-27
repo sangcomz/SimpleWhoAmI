@@ -24,17 +24,12 @@ import kr.co.sangcomz.whoami2.bean.PortfolioData;
  * A simple {@link Fragment} subclass.
  */
 public class Portfolio extends Fragment {
-//import android.support.v4.app.Fragment; 변경해줘야함
 
     LinearLayoutManager linearLayoutManager;
     GridLayoutManager gridLayoutManager;
     RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
     ArrayList<PortfolioData> portfolioDatas = new ArrayList<>();
-
-    public Portfolio() {
-        // Required empty public constructor
-    }
 
 
     @Override

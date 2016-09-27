@@ -16,13 +16,9 @@ import kr.co.sangcomz.whoami2.fragment.Hobby;
 public class Dialogs {
 
     public void DialogHobby(Context context) {
-//        final Dialog dialog = new Dialog(context, R.style.Base_Theme_AppCompat_Light_Dialog);
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        final Dialog dialog = new Dialog(context, R.style.Theme_AppCompat_Light_Dialog);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_add_hobby);
-
 
         final EditText etHobby = (EditText) dialog.findViewById(R.id.et_hobby);
         TextView txtAdd = (TextView) dialog.findViewById(R.id.txt_add);

@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,18 +19,10 @@ import kr.co.sangcomz.whoami2.R;
  * A simple {@link Fragment} subclass.
  */
 public class Hobby extends Fragment {
-//import android.support.v4.app.Fragment; 변경해줘야함
-
     ListView listView;
 
     public static HobbyAdapter hobbyAdapter; //어댑터 선언
     public static ArrayList<String> hobbys;
-
-    //생성자
-    public Hobby() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,21 +32,8 @@ public class Hobby extends Fragment {
 
         listView = (ListView)rootView.findViewById(R.id.lv);
 
-        hobbys = new ArrayList<String>();
+        hobbys = new ArrayList<>();
 
-
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-//                MainActivity.hobbys.remove(position);
-//                hobbyAdapter.notifyDataSetChanged();
-                return true;
-            }
-        });
-
-//        listView.setAdapter(new HobbyAdapter(getActivity(), MainActivity.hobbys));
         hobbyAdapter = new HobbyAdapter(getActivity(), hobbys);
 
         listView.setAdapter(hobbyAdapter);
@@ -65,23 +43,22 @@ public class Hobby extends Fragment {
 
     //어댑터뷰 보면 좋을것같은 자료 http://www.slideshare.net/yjaeseok/20140808-android-study12adapterview
     public class HobbyAdapter extends BaseAdapter{
-        ArrayList<String> hobbys;
+        ArrayList<String> hobbyList;
         ViewHolder holder;
         private LayoutInflater inflater;
-        int height = 0;
 
         HobbyAdapter(Context context, ArrayList<String> hobbys){
-            this.hobbys = hobbys;
+            this.hobbyList = hobbys;
             inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
         @Override
         public int getCount() {
-            return hobbys.size();
+            return hobbyList.size();
         }
 
         @Override
         public Object getItem(int i) {
-            return hobbys.get(i);
+            return hobbyList.get(i);
         }
 
         @Override
@@ -106,7 +83,7 @@ public class Hobby extends Fragment {
             holder.txtHobby.setText("");
 
             holder.txtNum.setText(String.valueOf(position + 1));
-            holder.txtHobby.setText(hobbys.get(position));
+            holder.txtHobby.setText(hobbyList.get(position));
 
             return view;
         }

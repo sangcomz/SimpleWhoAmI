@@ -32,7 +32,6 @@ import kr.co.sangcomz.whoami2.R;
  * A simple {@link Fragment} subclass.
  */
 public class Album extends Fragment {
-//import android.support.v4.app.Fragment; 변경해줘야함
 
     static ArrayList<String> imagePath;
     static String mLoaderPath;
@@ -101,8 +100,6 @@ public class Album extends Fragment {
         //ACTION_VIEW content://contacts/people/ - 연락처 리스트를 표시한다.
 
         //resolveActivity :::: Determine the best action to perform for a given Intent.
-        System.out.println("takePictureIntent.resolveActivity(getActivity().getPackageManager()) :::: " +
-                takePictureIntent.resolveActivity(getActivity().getPackageManager()));
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
@@ -144,15 +141,8 @@ public class Album extends Fragment {
         switch (requestCode) {
             case 2:
                 if (resultCode == getActivity().RESULT_OK) {
-//                    System.out.println(mCurrentPhotoPath); // logCat으로 경로확인.
-
-//                    imagePath.add(mCurrentPhotoPath);
                     imagePath.add(mLoaderPath);
                     albumAdapter.notifyDataSetChanged();
-
-//                    for (int i = 0; i < imagePath.size(); i++) {
-//                        System.out.println("imagePath :::: " + imagePath.get(i));
-//                    }
                 } else {
                     File file = new File(mLoaderPath);
                     file.delete();
@@ -161,12 +151,8 @@ public class Album extends Fragment {
                 break;
             case 1:
                 if (resultCode == getActivity().RESULT_OK) {
-                    System.out.println("mLoaderPath ::::: " + data.getDataString());
                     imagePath.add(data.getDataString());
                     albumAdapter.notifyDataSetChanged();
-//                    for (int i = 0; i < imagePath.size(); i++) {
-//                        System.out.println("imagePath :::: " + imagePath.get(i));
-//                    }
                 }
                 break;
         }
@@ -201,7 +187,7 @@ public class Album extends Fragment {
 
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
-            ViewHolder holder; //final?
+            ViewHolder holder;
             if (view == null) {
                 holder = new ViewHolder();
                 view = inflater.inflate(R.layout.album_list_item, viewGroup, false);
@@ -210,9 +196,6 @@ public class Album extends Fragment {
             } else {
                 holder = (ViewHolder) view.getTag();
             }
-
-
-            System.out.println("image Path :::: " + imagePath.get(position));
             Glide.with(getActivity())
                     .load(imagePath.get(position))
                     .centerCrop()
