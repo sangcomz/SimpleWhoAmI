@@ -21,6 +21,8 @@ import kr.co.sangcomz.whoami2.R;
 public class Hobby extends Fragment {
     ListView listView;
 
+
+    //좋지 않은 패턴!
     public static HobbyAdapter hobbyAdapter; //어댑터 선언
     public static ArrayList<String> hobbys;
 

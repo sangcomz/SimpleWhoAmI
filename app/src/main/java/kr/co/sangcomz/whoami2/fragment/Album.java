@@ -81,7 +81,8 @@ public class Album extends Fragment {
     public void pickImage() {
         Intent intent = new Intent(
                 Intent.ACTION_PICK,
-                MediaStore.Images.Media.INTERNAL_CONTENT_URI); //sd card Image
+//                MediaStore.Images.Media.INTERNAL_CONTENT_URI); // content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Ffile%2F77/ORIGINAL/NONE/1670568792
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // content://com.google.android.apps.photos.contentprovider/-1/1/content%3A%2F%2Fmedia%2Fexternal%2Ffile%2F77/ORIGINAL/NONE/382230167
 //      EXTERNAL_CONTENT_URI	The content:// style URI for the "primary" external storage volume.
 //      INTERNAL_CONTENT_URI	The content:// style URI for the internal storage.
         startActivityForResult(intent, 1);
@@ -98,6 +99,11 @@ public class Album extends Fragment {
         //ACTION_CALL tel:01012345678 - 010-1234-5678 번호로 바로 전화 걸기.
         //ACTION_EDIT content://contacts/people/1 - 1번 역락처 정보를 편집한다.
         //ACTION_VIEW content://contacts/people/ - 연락처 리스트를 표시한다.
+
+        /**
+         * 암시적 vs 명시적 인텐트
+         * http://blog.naver.com/since201109/150122845136
+         */
 
         //resolveActivity :::: Determine the best action to perform for a given Intent.
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -151,6 +157,7 @@ public class Album extends Fragment {
                 break;
             case 1:
                 if (resultCode == getActivity().RESULT_OK) {
+                    System.out.println("data.getDataString() :::: " + data.getDataString());
                     imagePath.add(data.getDataString());
                     albumAdapter.notifyDataSetChanged();
                 }
