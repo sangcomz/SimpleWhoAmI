@@ -69,7 +69,7 @@ public class Hobby extends Fragment {
         }
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
-
+            //view는 재사용이 가능하도록 설계
             if(view == null)
             {
                 view = inflater.inflate(R.layout.hobby_list_item, viewGroup, false);
