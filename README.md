@@ -1,9 +1,5 @@
 # Screenshot
-<img src="/img/1.png" width=20%>
-<img src="/img/2.png" width=20%>
-<img src="/img/3.png" width=20%>
-<img src="/img/4.png" width=20%>
-<img src="/img/5.png" width=20%>
+<img src="/img/1.png" width=20%> <img src="/img/2.png" width=20%> <img src="/img/3.png" width=20%> <img src="/img/4.png" width=20%> <img src="/img/5.png" width=20%>
 
 # 주의사항
 CoordinatorLayout의 애니메이션을 사용하기 위해서, listview나 gridview를 스크롤뷰안에서 사용하고 있습니다.
