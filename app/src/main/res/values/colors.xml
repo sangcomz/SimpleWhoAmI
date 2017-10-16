@@ -3,7 +3,9 @@
     <color name="BasicTextColor">#66655a</color> //textBasic 색
     <color name="lineColor">#fbc02d</color>
     <color name="ProfilelineColor">#d5d5d7</color>
-
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="colorAccent">#FFEB3B</color>
 
     <!--<color name="Transparent">R.id</color>-->
 
